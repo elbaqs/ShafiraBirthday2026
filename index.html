@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07110c">
+<title>Shafira Park — Birthday Expedition</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;800;900&family=Special+Elite&display=swap');
+:root{--paper:#e7d7ad;--paper2:#f1e6c9;--ink:#17231b;--green:#173b2b;--green2:#244c35;--red:#9b3428;--gold:#c49b48;--dark:#050908;--line:#6e6b4f}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#07110c;color:var(--ink)}
+body{font-family:'Libre Franklin',Arial,sans-serif;background-image:linear-gradient(#07110c88,#07110cb8),url('assets/welcome-poster.webp');background-size:cover;background-position:center;background-attachment:fixed}
+button,input{font:inherit}.screen{display:none;min-height:100vh;padding:18px;position:relative;background-size:cover;background-position:center;background-attachment:fixed}.screen:before{content:"";position:absolute;inset:0;background:linear-gradient(#07110c55,#07110c8c);pointer-events:none}.screen>*{position:relative;z-index:1}.screen.active{display:flex;align-items:center;justify-content:center}
+#welcome:before{background:linear-gradient(180deg,#04100910,#0410093b 48%,#041009dd)}#investor{background-image:url('assets/welcome.jpg')}#register{background-image:url('assets/register.jpg')}#pass{background-image:url('assets/access.jpg')}#map{background-image:url('assets/map.jpg')}#quiz{background-image:url('assets/dossier.jpg')}#correct{background-image:url('assets/correct.jpg')}#wallet{background-image:url('assets/locked.jpg')}#rewards{background-image:url('assets/complete.jpg')}#final{background-image:url('assets/access.jpg')}#treasure{background-image:url('assets/treasure.jpg')}
+.paper{width:min(1120px,100%);background:linear-gradient(#eadfbef2,#dfcca0f2);padding:28px;border:1px solid #9b895e;box-shadow:0 30px 90px #000c,inset 0 0 55px #7b5d2825;position:relative;overflow:hidden}.paper:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.23;background:repeating-linear-gradient(7deg,transparent 0 8px,#5e4d3022 9px 10px),radial-gradient(circle at 12% 18%,#684d2722 0 2px,transparent 3px)}.paper>*{position:relative;z-index:1}
+.logo{text-align:center;letter-spacing:.12em;font-weight:900;color:var(--green)}.logo b{font-size:clamp(32px,8vw,72px);display:block;line-height:.86;text-shadow:1px 2px 0 #f0e4bf}.logo span{display:inline-block;color:var(--red);font-size:12px;border-top:2px solid var(--red);border-bottom:2px solid var(--red);padding:5px 12px;margin-top:8px}
+.btn{border:0;background:var(--red);color:#fff;padding:15px 24px;font-weight:900;letter-spacing:.09em;cursor:pointer;box-shadow:5px 5px 0 #48231c;text-transform:uppercase}.btn:hover{transform:translate(-1px,-1px);box-shadow:7px 7px 0 #48231c}.btn.secondary{background:var(--green);box-shadow:5px 5px 0 #0b2117}.btn.gold{background:#8a671f;box-shadow:5px 5px 0 #4d3812}.btn.ghost{background:#f2e5c8;color:var(--green);border:2px solid var(--green);box-shadow:none}.tiny{font:12px 'Special Elite',monospace;opacity:.82}.stamp{display:inline-block;border:3px solid var(--red);color:var(--red);padding:6px 10px;transform:rotate(-2deg);font:900 12px 'Special Elite',monospace;letter-spacing:.08em}.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;border-bottom:3px solid var(--green);padding-bottom:12px;margin-bottom:16px;font-size:12px;font-weight:900;letter-spacing:.07em}.topbarRight{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}.progressText{white-space:nowrap;color:var(--green);font:900 12px 'Special Elite',monospace}.coinBadge{background:var(--green);color:#fff;padding:9px 12px;border:1px solid #d1b65e66;border-radius:2px;cursor:pointer;font-weight:900;letter-spacing:.05em}.coinBadge:hover{background:#24523a}
+.backBtn{position:fixed;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));z-index:50;border:1px solid #f4e7c777;background:#07110cdd;color:#f2e4bd;padding:10px 12px;font:900 11px 'Special Elite',monospace;letter-spacing:.06em;cursor:pointer;box-shadow:0 6px 18px #0008;display:none}.backBtn.show{display:block}.reset{position:fixed;right:10px;bottom:10px;background:#07110ccc;color:#fff;border:1px solid #fff5;padding:7px;z-index:50;font-size:10px;opacity:.22}.reset:hover{opacity:1}
+/* WELCOME */
+.welcome-shell{width:min(1040px,100%);min-height:min(800px,94vh);position:relative;overflow:hidden;border:1px solid #9b895e;box-shadow:0 30px 90px #000e;background:#0a160f}.welcome-bg{position:absolute;inset:0;background-image:linear-gradient(180deg,#06110a00 0%,#06110a2c 44%,#06110ae0 100%),url('assets/welcome-hd.webp');background-size:cover;background-position:center 48%;transform:scale(1.005)}.welcome-vignette{position:absolute;inset:0;box-shadow:inset 0 0 120px #000b;pointer-events:none}.welcome-copy{position:absolute;inset:auto 0 0;z-index:2;text-align:center;color:#f1e4c1;padding:44px 20px 48px;background:linear-gradient(transparent,#07110cb0 21%,#07110cf5)}.welcome-copy .eyebrow{font:12px 'Special Elite',monospace;letter-spacing:.18em;color:#e1bf67}.welcome-copy h1{margin:7px 0 10px;font-size:clamp(38px,7vw,76px);line-height:.88;text-shadow:0 3px 18px #000;letter-spacing:-.045em}.welcome-copy p{font:14px/1.6 'Special Elite',monospace;max-width:600px;margin:0 auto 22px;color:#eadfbe}.welcome-copy .btn{min-width:220px}
+/* INVESTOR NOTE */
+.investor-shell{width:min(850px,100%);padding:42px 38px;background:linear-gradient(#0b1711e8,#07110cf4);border:1px solid #d6b45c66;box-shadow:0 30px 90px #000d;color:#f1e4c1;position:relative}.investor-shell:before{content:"CONFIDENTIAL";position:absolute;right:24px;top:24px;border:2px solid #9b3428;color:#d86857;padding:7px 10px;transform:rotate(5deg);font:900 11px 'Special Elite',monospace;letter-spacing:.14em}.investor-shell h2{font-size:clamp(38px,7vw,70px);line-height:.9;margin:15px 0 18px;color:#f0dfb2}.investor-shell .meta{color:#d9b461;font:12px 'Special Elite',monospace;letter-spacing:.16em}.investor-shell p{font:16px/1.72 'Special Elite',monospace;max-width:690px}.investor-sign{margin:26px 0 28px;color:#e3c777;font:900 15px 'Special Elite',monospace}
+/* REGISTRATION */
+.registration{min-height:min(720px,92vh);display:grid;place-items:center;background:transparent;padding:0}.registration-card{width:min(610px,100%);padding:36px 30px;background:#d9c79bf0;border:1px solid #8d7b52;box-shadow:0 22px 55px #0009;text-align:center}.registration-card h2{font-size:clamp(32px,6vw,58px);line-height:.95;margin:18px 0 10px;color:var(--green)}.registration-card p{font:15px/1.6 'Special Elite',monospace}.name-input{width:100%;padding:16px 18px;margin:15px 0 14px;background:#fff9e8;border:2px solid #776a4b;font:20px 'Special Elite',monospace;color:var(--ink);outline:none}.name-input:focus{border-color:var(--red);box-shadow:0 0 0 3px #9b342822}.form-msg{min-height:22px;color:var(--red);font:12px 'Special Elite',monospace;margin-bottom:8px}
+/* VIP */
+.pass-paper{min-height:min(800px,94vh);display:grid;grid-template-columns:minmax(0,.85fr) minmax(280px,1fr);gap:30px;align-items:center;padding:34px;background:linear-gradient(#eadfbedf,#dfcca0df)}.pass-art{display:flex;justify-content:center;align-items:center}.pass-art img{display:block;max-width:min(100%,430px);max-height:72vh;object-fit:contain;filter:drop-shadow(14px 20px 14px #1e180c55);transform:rotate(-1.5deg)}.pass-copy h2{font-size:clamp(34px,6vw,62px);line-height:.95;color:var(--green);margin:12px 0}.pass-copy .visitor-name{color:var(--red)}.pass-copy p{font:15px/1.6 'Special Elite',monospace}.pass-copy .btn{margin-top:12px}
+/* MAP */
+.map-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:3px solid #665234;box-shadow:inset 0 0 0 7px #e6d8b48a,0 12px 34px #00000055;background:#08120d}.map{position:relative;width:100%;line-height:0;overflow:hidden;background:#08120d}.map-img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none;filter:saturate(.98) contrast(1.03) brightness(.98)}.map:after{content:"";position:absolute;inset:0;background:linear-gradient(#0000,#3b2d1106);pointer-events:none;z-index:1}
+
+/* Checkpoint hotspots: the visible status marker sits exactly on the artwork circle,
+   while the actual click/tap target is larger and invisible. */
+.node{position:absolute;transform:translate(-50%,-50%);z-index:3;width:2.15%;aspect-ratio:1;overflow:visible;-webkit-tap-highlight-color:transparent}
+.node button{position:absolute;width:270%;height:270%;left:-85%;top:-85%;border-radius:50%;border:0;background:transparent;color:transparent;cursor:pointer;padding:0;box-shadow:none;outline:none}
+.node:not(.locked) button:hover:before,.node:not(.locked) button:focus-visible:before,.node.current:before{content:"";position:absolute;inset:-10%;border-radius:50%;box-shadow:0 0 0 2px #f7df91,0 0 16px #f2c65a99;background:#fff1b908;pointer-events:none}.node.current:before{animation:checkpointPulse 1.6s ease-in-out infinite}
+.node.locked button{cursor:not-allowed}
+.node:after{position:absolute;left:50%;top:50%;width:58%;height:58%;transform:translate(-50%,-50%);border-radius:50%;display:grid;place-items:center;pointer-events:none;box-sizing:border-box;font:900 clamp(8px,.9vw,13px)/1 Arial}
+.node.locked:after{content:'🔒';background:#eadfbee8;color:#31312c;border:1px solid #655839;font-size:clamp(7px,.75vw,11px);filter:grayscale(.7)}
+.node.attempted:not(.done):after{content:'!';background:#9b5c21;color:#fff;border:1px solid #f1d686;box-shadow:0 0 8px #d49a4c66}
+.node.done:after{content:'✓';background:#1f603f;color:#fff;border:1px solid #f1e6bb;box-shadow:0 0 8px #2f805e66}
+
+/* Exact centers of the four orange checkpoint circles in the 1672×941 artwork. */
+.n1{left:38.156%;top:42.166%}
+.n2{left:55.381%;top:20.969%}
+.n3{left:38.807%;top:65.572%}
+.n4{left:77.397%;top:63.514%}
+
+/* Final reward markers use existing trail circles too, at artwork-native positions. */
+.main{left:88.70%;top:54.20%;width:2.15%;display:none}
+.main.show{display:block}
+.main button{cursor:pointer}
+.main:after{content:'★';background:#7e5418;color:#fff;border:2px solid #f3d276;box-shadow:0 0 14px #d6ae55aa;animation:pulse 1.5s infinite}
+.treasure-node{left:67.88%;top:35.28%;width:2.15%;display:none}
+.treasure-node.show{display:block}
+.treasure-node button{cursor:pointer}
+.treasure-node:after{content:'✦';background:#7e5418;color:#fff;border:2px solid #f3d276;box-shadow:0 0 14px #d6ae55aa;animation:pulse 1.8s infinite}
+.mapnote{font:13px 'Special Elite',monospace;margin:14px 0 0}.map-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}@keyframes checkpointPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.16);opacity:1}}@keyframes pulse{50%{transform:scale(1.08);box-shadow:0 0 0 5px #8d2e254d,0 0 34px #d6ae55}}
+/* QUIZ */
+.dossier{min-height:760px;background:linear-gradient(#eadfbee8,#dfcca0e8)}.dossier h2{font-size:clamp(32px,6vw,56px);margin:10px 0 4px;color:var(--red);letter-spacing:-.04em}.quizMeta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0 12px}.quizPill{border:1px solid #776a4b;background:#efe3c5;padding:7px 10px;font:900 11px 'Special Elite',monospace;color:var(--green)}.casefile{display:grid;grid-template-columns:.95fr 1.15fr;gap:22px;align-items:start;margin-top:14px}.evidence{min-height:410px;border:8px solid #eee0b9;background:center/cover no-repeat;box-shadow:4px 6px 0 #0004;transform:rotate(-1deg);position:relative;filter:sepia(.22) contrast(1.06) brightness(.86)}.evidence:before{content:'';position:absolute;inset:0;background:linear-gradient(125deg,#0003,transparent 45%,#0002),repeating-linear-gradient(0deg,#0000 0 5px,#0001 6px);z-index:1}.evidence:after{content:'FOSSIL EVIDENCE // UNIDENTIFIED';z-index:2;position:absolute;bottom:10px;left:10px;background:#e8d8ad;color:var(--red);padding:6px 9px;font:900 10px 'Special Elite',monospace}.questionPanel{background:#f4e9cde8;border-left:7px solid var(--green);padding:20px;box-shadow:3px 4px 0 #6a563333}.questionPanel h3{font-size:clamp(22px,3vw,34px);line-height:1.12;color:var(--green);margin:4px 0 16px}.options{display:grid;gap:9px}.optionBtn{width:100%;text-align:left;border:2px solid #776a4b;background:#fff8e7;color:var(--ink);padding:13px 14px;cursor:pointer;font:14px/1.35 'Special Elite',monospace;transition:.15s}.optionBtn:hover:not(:disabled),.optionBtn.selected{border-color:var(--red);background:#f7e0d5}.optionBtn.correct{border-color:#2f7044;background:#dbe9d9;color:#173b2b}.optionBtn.wrong{border-color:#a83228;background:#f2d3cc;color:#741d17}.optionBtn:disabled{cursor:default}.quizControls{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.feedback{display:none;margin-top:14px;padding:14px 16px;border-left:6px solid var(--green);background:#e4ead7;font:13px/1.5 'Special Elite',monospace}.feedback.show{display:block}.feedback.bad{border-left-color:var(--red);background:#f1d9d0}.feedback b{font-family:'Libre Franklin',sans-serif}.msg{min-height:12px;margin:8px 0;font-weight:900;color:var(--red)}
+/* RESULT / REVISIT */
+.correct-shell{width:min(1040px,100%);min-height:min(780px,94vh);position:relative;overflow:hidden;border:1px solid #c9ae62;box-shadow:0 30px 90px #000e;background:#07110c}.correct-img{position:absolute;inset:0;background:center/cover no-repeat;filter:brightness(.78) contrast(1.16) saturate(.88)}.correct-img:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#06110aed 0,#06110ab8 46%,#06110a55 78%),linear-gradient(0deg,#06110add 0,transparent 55%)}.correct-copy{position:relative;z-index:2;color:#f2e5c2;min-height:min(780px,94vh);padding:48px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;max-width:700px}.correct-copy .ok{font:900 18px 'Special Elite',monospace;letter-spacing:.12em;color:#7ee199}.correct-copy .fail{color:#ff8b7c}.correct-copy h2{font-size:clamp(44px,7vw,80px);line-height:.86;margin:8px 0;color:#fff}.correct-copy p{font:14px/1.55 'Special Elite',monospace}.scoreCard{display:flex;align-items:center;gap:14px;margin:10px 0 12px;background:#0a160edb;border:1px solid #d9b95e;padding:12px 14px}.scoreNum{font:900 30px 'Special Elite',monospace;color:#f4d77a}.resultBreakdown{width:100%;display:grid;gap:6px;margin:8px 0 14px}.resultRow{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;background:#07110cc7;border:1px solid #ffffff17;padding:8px 10px;font:11px/1.35 'Special Elite',monospace}.resultRow .mark{font-weight:900}.resultRow.good .mark{color:#78dc92}.resultRow.bad .mark{color:#ff8b7c}.minted{display:flex;align-items:center;gap:14px;margin:8px 0 18px;background:#0a160edb;border:1px solid #d9b95e;padding:12px 14px}.coin-mini{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;border:4px double #3c2d0d;background:radial-gradient(circle at 35% 30%,#f4d980,#b07d23 58%,#68460d);color:#2c2109;font:900 18px 'Special Elite',monospace;box-shadow:0 0 0 3px #d3ab4b,0 8px 22px #0009}.correct-actions{display:flex;gap:10px;flex-wrap:wrap}
+/* WALLET */
+.wallet-paper{min-height:min(760px,94vh);background:linear-gradient(#eadfbeef,#dfcca0ef)}.wallet-title{text-align:center;margin-bottom:20px}.wallet-title h2{font-size:clamp(42px,7vw,72px);line-height:.9;color:var(--green);margin:10px 0}.wallet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.coin-card{border:2px solid #735f36;background:#f2e5c7;padding:18px;display:grid;grid-template-columns:86px 1fr;gap:16px;align-items:center;box-shadow:5px 6px 0 #5e4a2d44}.coin-card.locked{filter:grayscale(.9);opacity:.55}.coin-big{width:82px;height:82px;border-radius:50%;display:grid;place-items:center;border:5px double #47320d;background:radial-gradient(circle at 35% 30%,#f6dc83,#b77e1f 60%,#65450f);box-shadow:0 0 0 4px #d1aa4b,0 8px 20px #0003;color:#2a2009;text-align:center;font:900 14px/1.05 'Special Elite',monospace}.coin-card h3{margin:0 0 6px;color:var(--red);font-size:22px}.coin-card p{font:12px/1.5 'Special Elite',monospace;margin:0 0 9px}.status{font:900 10px 'Special Elite',monospace;letter-spacing:.08em;color:var(--green)}.status.redeemed{color:var(--red)}
+/* REWARDS */
+.reward-paper{min-height:min(760px,94vh);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(#eadfbee8,#dfcca0e8)}.reward-head{text-align:center;margin-bottom:24px}.reward-head h2{font-size:clamp(38px,7vw,68px);color:var(--green);margin:12px 0 5px;line-height:.9}.reward-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.reward-card{min-height:290px;border:2px solid #7c6a45;background:#f0e3c2;position:relative;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;box-shadow:6px 7px 0 #5c4a2e55}.reward-card:before{content:'';position:absolute;inset:0;background-position:center;background-size:cover;opacity:.24;filter:sepia(.25)}.reward-card.main-reward:before{background-image:url('assets/ticket.webp')}.reward-card.treasure-reward:before{background-image:url('assets/shafira1.jpg')}.reward-card>*{position:relative;z-index:1}.reward-icon{font-size:46px}.reward-card h3{font-size:28px;margin:8px 0 4px;color:var(--red)}.reward-card p{font:13px/1.5 'Special Elite',monospace}.reward-card .btn{align-self:flex-start;margin-top:8px}.reward-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+/* MAIN SPECIMEN */
+.reveal{text-align:center;min-height:760px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:45px 20px;background:linear-gradient(#eadfbed8,#eadfbed8),url('assets/ticket.webp');background-size:cover;background-position:center}.reveal .token{font-size:88px;filter:drop-shadow(0 8px 4px #0003)}.reveal h2{font-size:clamp(38px,8vw,74px);color:var(--red);margin:16px 0 8px;line-height:.9}.classified{margin-top:24px;padding:18px;border:2px dashed var(--red);background:#efe1bcdd;max-width:690px}.redeem-proof{margin:20px auto 0;max-width:660px;padding:20px;background:#10251bdd;color:#f2e5c2;border:1px solid #d3b65e;text-align:left;font:14px/1.6 'Special Elite',monospace}.redeem-proof b{color:#f2cf72}.redeemed-mark{display:inline-block;margin-top:12px;border:3px solid #73a978;color:#2f6940;padding:8px 12px;transform:rotate(-2deg);font:900 12px 'Special Elite',monospace}
+/* TREASURE */
+.treasure-paper{min-height:min(800px,94vh);display:grid;grid-template-columns:minmax(310px,.92fr) minmax(0,1.08fr);gap:28px;align-items:center;background:linear-gradient(#eadfbee7,#dfcca0e7)}.photo-board{position:relative;min-height:590px;background:#173b2b;border:10px solid #e8d9b5;box-shadow:9px 12px 0 #352d1e55;overflow:hidden;padding:20px}.photo-board:before{content:'SHAFIRA // PRIVATE ARCHIVE';position:absolute;top:12px;left:16px;color:#e8d6a3;font:900 10px 'Special Elite',monospace;letter-spacing:.1em;z-index:3}.polaroid{position:absolute;margin:0;background:#efe3c8;padding:8px 8px 28px;box-shadow:0 10px 24px #0007;border:1px solid #6d5d42}.polaroid img{display:block;width:100%;height:100%;object-fit:cover}.p1{width:50%;height:48%;left:5%;top:9%;transform:rotate(-4deg)}.p2{width:43%;height:38%;right:5%;top:8%;transform:rotate(4deg)}.p3{width:43%;height:39%;left:7%;bottom:5%;transform:rotate(3deg)}.p4{width:48%;height:47%;right:4%;bottom:4%;transform:rotate(-3deg)}.personal-note{background:#f5e9cced;border-left:7px solid var(--red);padding:26px;box-shadow:3px 4px 0 #6a563333}.personal-note h2{font-size:clamp(32px,5vw,54px);color:var(--red);margin:8px 0 16px;line-height:.94}.personal-note p{font:15px/1.65 'Special Elite',monospace;margin:0 0 13px}.signature{font-weight:900;color:var(--green);font-size:18px!important}
+@media(max-width:700px){.screen{padding:10px}.paper{padding:16px}.backBtn{top:8px;left:8px}.welcome-shell{min-height:calc(100vh - 20px)}.welcome-bg{background-position:center}.welcome-copy{padding:130px 16px 32px}.investor-shell{padding:70px 22px 26px}.investor-shell p{font-size:14px}.registration-card{padding:28px 18px}.pass-paper{grid-template-columns:1fr;gap:14px;text-align:center;padding:20px 14px}.pass-art img{max-height:55vh}.pass-copy .btn{width:100%}.map-scroll{margin-inline:-2px}.map{width:920px}.casefile{grid-template-columns:1fr}.evidence{min-height:240px}.topbar{font-size:9px;align-items:flex-start}.topbarRight{gap:6px}.progressText{font-size:9px}.coinBadge{padding:7px 8px;font-size:9px}.questionPanel{padding:15px}.dossier{min-height:calc(100vh - 20px)}.correct-copy{padding:26px 20px;min-height:calc(100vh - 20px)}.correct-img:after{background:linear-gradient(0deg,#06110aed 0,#06110a6a 60%,#06110a20)}.wallet-grid{grid-template-columns:1fr}.coin-card{grid-template-columns:70px 1fr}.coin-big{width:66px;height:66px}.reward-grid{grid-template-columns:1fr}.reward-card{min-height:230px}.treasure-paper{grid-template-columns:1fr}.photo-board{min-height:520px}.personal-note{padding:18px}.reset{display:none}}
+</style>
+</head>
+<body>
+<audio id="themeAudio" src="assets/theme.mp3" loop preload="auto"></audio>
+
+<button id="backBtn" class="backBtn" onclick="goBack()">← BACK</button>
+<button class="reset" onclick="resetGame()">Reset Expedition</button>
+
+<section id="welcome" class="screen active">
+  <div class="welcome-shell">
+    <div class="welcome-bg"></div><div class="welcome-vignette"></div>
+    <div class="welcome-copy">
+      <div class="eyebrow">AN EXCLUSIVE BIRTHDAY EXPEDITION AWAITS</div>
+      <h1>WELCOME TO<br>SHAFIRA PARK</h1>
+      <p>Discover. Identify. Collect. Four specimens are waiting inside — along with a few things The Investor has been hiding.</p>
+      <button class="btn" onclick="go('investor')">ENTER THE PARK →</button>
+    </div>
+  </div>
+</section>
+
+<section id="investor" class="screen">
+  <div class="investor-shell">
+    <div class="meta">MESSAGE FROM THE INVESTOR (YOUR HUSBAND)</div>
+    <h2>Welcome to your own Park, Shafira.</h2>
+    <p>I didn’t want this birthday to begin with a box. I wanted it to begin with a little world built only for you.</p>
+    <p>Somewhere inside are four specimens to identify, four coins to collect, and a couple of things I’ve been keeping off the map. Take your time. Follow the trail. Get the answers right. Keep every coin — each one becomes your claim token for a specimen.</p>
+    <p>And if the park ever tells you to find <b>The Investor</b>… you already know where to look.</p>
+    <div class="investor-sign">Happy 29th, bebe.<br>— The Investor (Your Husband)</div>
+    <button class="btn" onclick="go('register')">CONTINUE TO REGISTRATION →</button>
+  </div>
+</section>
+
+<section id="register" class="screen">
+  <div class="paper registration">
+    <div class="registration-card">
+      <div class="logo"><b>SHAFIRA PARK</b><span>EXPEDITION REGISTRATION</span></div>
+      <span class="stamp">VISITOR CLEARANCE REQUIRED</span>
+      <h2>ENTER YOUR NAME,<br>EXPLORER.</h2>
+      <p>Your journey through Shafira Park is about to begin.</p>
+      <input id="visitorName" class="name-input" autocomplete="name" placeholder="Type your name..." maxlength="30" onkeydown="if(event.key==='Enter')submitName()">
+      <div id="nameMsg" class="form-msg"></div>
+      <button class="btn" onclick="submitName()">CONTINUE →</button>
+    </div>
+  </div>
+</section>
+
+<section id="pass" class="screen">
+  <div class="paper pass-paper">
+    <div class="pass-art"><img src="assets/vip-pass.webp" alt="Shafira Park VIP Visitor Pass"></div>
+    <div class="pass-copy">
+      <span class="stamp">ACCESS GRANTED</span>
+      <h2>WELCOME,<br><span id="passName" class="visitor-name">SHAFIRA</span>.</h2>
+      <p>Your VIP Expedition Pass is ready. Keep it close — you now have clearance to enter the island, identify four specimens, and collect four redeemable Expedition Coins.</p>
+      <p class="tiny">CLASS: VIP · ACCESS: ALL ACCESS · EXPEDITION: BIRTHDAY EXPEDITION</p>
+      <button class="btn" onclick="startExpedition()">START YOUR EXPEDITION →</button>
+    </div>
+  </div>
+</section>
+
+<section id="map" class="screen">
+  <div class="paper">
+    <div class="topbar"><span>SHAFIRA PARK // EXPEDITION MAP</span><div class="topbarRight"><span id="progress" class="progressText">SPECIMENS 0/4</span><button id="redeemTop" class="coinBadge" onclick="go('wallet')">REDEEM YOUR PRIZE · 🪙 0/4</button></div></div>
+    <div class="map-scroll"><div class="map">
+      <img class="map-img" src="assets/map.jpg" alt="Shafira Park Birthday Expedition Map" draggable="false">
+      <div class="node n1" data-i="0"><button aria-label="Open Specimen 01" onclick="openSpec(0)"></button></div>
+      <div class="node n2 locked" data-i="1"><button aria-label="Open Specimen 02" onclick="openSpec(1)"></button></div>
+      <div class="node n3 locked" data-i="2"><button aria-label="Open Specimen 03" onclick="openSpec(2)"></button></div>
+      <div class="node n4 locked" data-i="3"><button aria-label="Open Specimen 04" onclick="openSpec(3)"></button></div>
+      <div class="node main" id="mainNode"><button aria-label="Access Main Specimen" onclick="go('rewards')"></button></div>
+      <div class="node treasure-node" id="treasureNode"><button aria-label="Open Birthday Treasure" onclick="go('treasure')"></button></div>
+    </div></div>
+    <div class="map-actions"><p id="mapNote" class="mapnote">FIELD PROTOCOL: Each specimen contains a 5-question research test. Score at least 3/5 to earn its Expedition Coin.</p></div>
+  </div>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="paper dossier">
+    <div class="topbar"><span>SHAFIRA PARK // SPECIMEN RESEARCH</span><div class="topbarRight"><span id="quizProgressTop" class="progressText">SPECIMENS 0/4</span><button id="quizCoins" class="coinBadge" onclick="go('wallet')">REDEEM YOUR PRIZE · 🪙 0/4</button></div></div>
+    <span class="stamp">RESEARCH TEST // 3 OF 5 REQUIRED</span><h2 id="qTitle"></h2>
+    <div class="quizMeta"><span id="qCounter" class="quizPill">QUESTION 1/5</span><span id="liveScore" class="quizPill">SCORE 0</span><span class="quizPill">COIN THRESHOLD 3/5</span></div>
+    <div class="casefile">
+      <div id="evidence" class="evidence"></div>
+      <div class="questionPanel">
+        <div class="tiny">RESEARCH QUESTION</div>
+        <h3 id="questionText"></h3>
+        <div id="options" class="options"></div>
+        <div id="feedback" class="feedback"></div>
+        <div class="quizControls"><button id="submitChoiceBtn" class="btn" onclick="submitChoice()">SUBMIT ANSWER</button><button id="nextQuestionBtn" class="btn secondary" onclick="nextQuestion()" style="display:none">NEXT QUESTION →</button></div>
+      </div>
+    </div>
+    <div id="msg" class="msg"></div><button class="btn ghost" onclick="go('map')">RETURN TO MAP</button>
+  </div>
+</section>
+
+<section id="correct" class="screen">
+  <div class="correct-shell">
+    <div id="correctImg" class="correct-img"></div>
+    <div class="correct-copy">
+      <div id="resultLabel" class="ok">SPECIMEN RESEARCH COMPLETE</div>
+      <h2 id="correctName">T. REX</h2>
+      <div class="scoreCard"><div id="resultScore" class="scoreNum">0/5</div><div><b id="resultHeadline">RESEARCH COMPLETE</b><br><span id="resultSub" class="tiny"></span></div></div>
+      <div id="resultBreakdown" class="resultBreakdown"></div>
+      <div id="mintedBox" class="minted"><div id="mintCoin" class="coin-mini">01</div><div><b id="mintTitle">SPECIMEN 01 COIN MINTED</b><br><span class="tiny">Recorded permanently in REDEEM YOUR PRIZE.</span></div></div>
+      <div class="correct-actions"><button id="walletResultBtn" class="btn gold" onclick="go('wallet')">REDEEM YOUR PRIZE 🪙</button><button id="retakeBtn" class="btn secondary" onclick="retakeCurrent()">RETAKE TEST</button><button id="continueAfterCorrect" class="btn" onclick="continueAfterCorrect()">CONTINUE →</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="wallet" class="screen">
+  <div class="paper wallet-paper">
+    <div class="wallet-title"><span class="stamp">EXPEDITION LEDGER</span><h2>REDEEM YOUR PRIZE</h2><p class="tiny">Score at least 3/5 in each specimen research test to mint its unique Expedition Coin. Earned coins stay permanently recorded here, even after redemption.</p></div>
+    <div id="walletGrid" class="wallet-grid"></div>
+    <div class="reward-nav"><button class="btn secondary" onclick="goBack()">BACK</button><button class="btn" onclick="go('map')">RETURN TO MAP</button></div>
+  </div>
+</section>
+
+<section id="rewards" class="screen">
+  <div class="paper reward-paper">
+    <div class="reward-head"><span class="stamp">EXPEDITION COMPLETE</span><h2>2 FINAL REWARDS UNLOCKED.</h2><p class="tiny">FOUR SPECIMENS IDENTIFIED · FOUR COINS RECORDED · MASTER CLEARANCE GRANTED</p></div>
+    <div class="reward-grid">
+      <article class="reward-card main-reward"><div class="reward-icon">🏅</div><h3>MAIN SPECIMEN</h3><p>Your Master Clearance can now be redeemed directly from The Investor (your husband).</p><button class="btn" onclick="go('final')">VIEW REDEMPTION →</button></article>
+      <article class="reward-card treasure-reward"><div class="reward-icon">✦</div><h3>PERSONAL TREASURE</h3><p>A private note from The Investor. This one isn’t a specimen — it’s yours to keep.</p><button class="btn gold" onclick="go('treasure')">OPEN NOTE →</button></article>
+    </div>
+    <div class="reward-nav"><button class="btn gold" onclick="go('wallet')">VIEW ALL 4 COINS</button><button class="btn secondary" onclick="go('map')">RETURN TO MAP</button></div>
+  </div>
+</section>
+
+<section id="final" class="screen">
+  <div class="paper reveal">
+    <div class="logo"><b>SHAFIRA PARK</b><span>MASTER REDEMPTION CLEARANCE</span></div><div class="token">🏅</div><p class="stamp">THE INVESTOR HOLDS THE FINAL SPECIMEN</p>
+    <h2>REDEEM YOUR<br>MAIN SPECIMEN.</h2>
+    <div class="classified"><p>This screen is your authorization. The Main Specimen is being held outside the digital park by <b>The Investor (your husband)</b>.</p><p><b id="finalName">Shafira</b>, present your Master Clearance to The Investor to claim what is yours.</p></div>
+    <button id="mainRedeemBtn" class="btn" onclick="redeemMain()">REDEEM FROM THE INVESTOR →</button>
+    <div id="finalCopy" class="redeem-proof" hidden><b>REDEMPTION REQUEST APPROVED.</b><br>Find The Investor, show him this screen, and say: <b>“I’m here to claim my Main Specimen.”</b><br><br>Under Shafira Park regulations, The Investor is now obligated to hand over the classified package marked <b>MAIN SPECIMEN</b>.<br><span class="redeemed-mark">CLAIM AUTHORIZED</span></div>
+    <div class="reward-nav" style="justify-content:center"><button class="btn gold" onclick="go('treasure')">READ THE INVESTOR'S NOTE →</button><button class="btn secondary" onclick="go('rewards')">BACK TO REWARDS</button></div>
+  </div>
+</section>
+
+<section id="treasure" class="screen">
+  <div class="paper treasure-paper">
+    <div class="photo-board" aria-label="Photos of Shafira">
+      <figure class="polaroid p1"><img src="assets/shafira1.jpg" alt="Shafira"></figure>
+      <figure class="polaroid p2"><img src="assets/shafira2.webp" alt="Shafira"></figure>
+      <figure class="polaroid p3"><img src="assets/shafira3.jpg" alt="Shafira"></figure>
+      <figure class="polaroid p4"><img src="assets/shafira4.jpg" alt="Shafira"></figure>
+    </div>
+    <div class="personal-note">
+      <span class="stamp">PERSONAL TREASURE // FOR YOUR EYES ONLY</span>
+      <h2>Notes from the Investor<br><small>(Your Husband)</small></h2>
+      <p>Selamat 29 tahun, bebe.</p>
+      <p>Alhamdulillah, tahun ini banyak rezeki yang datang. Ada cobaan, ada naik-turunnya, tapi aku seneng lihat bebe bisa ngelewatin semuanya.</p>
+      <p>Semoga di umur 29 ini bebe makin happy, makin semangat, dan semua yang bebe jalanin terasa lebih ringan. Semoga tahun ini dan tahun-tahun berikutnya selalu dilancarkan rezekinya, diberi kesehatan, dan dibukakan pintu-pintu kebaikan lain dalam kehidupan bebe.</p>
+      <p>Makasih sudah jadi teman jalan aku. Semoga masih banyak expedition, cerita, hal random, dan perjalanan baru yang bisa kita temuin bareng.</p>
+      <p class="signature">Happy birthday, bebe. ❤️<br>— The Investor</p>
+      <div class="reward-nav"><button class="btn" onclick="go('final')">REDEEM MAIN SPECIMEN</button><button class="btn gold" onclick="go('wallet')">VIEW COINS</button><button class="btn secondary" onclick="go('rewards')">BACK TO REWARDS</button></div>
+    </div>
+  </div>
+</section>
+
+<script>
+const specimens=[
+{
+  title:'SPECIMEN 01',name:'T. REX',fossil:'assets/fossil1.webp',reveal:'assets/reveal1.webp',fact:'Tyrannosaurus rex research cleared.',
+  questions:[
+    {q:'In Jurassic Park (1993), what animal is used as bait at the T. rex paddock?',opts:['A pig','A goat','A cow','A deer'],a:1,why:'A goat is raised into the paddock as food for the T. rex.'},
+    {q:'In Jurassic World (2015), who uses a flare to lure the veteran T. rex into the final fight?',opts:['Owen Grady','Claire Dearing','Alan Grant','Lowery Cruthers'],a:1,why:'Claire Dearing opens the paddock and runs with a flare to draw the T. rex toward the Indominus rex.'},
+    {q:'Tyrannosaurus rex lived during which geologic period?',opts:['Triassic','Jurassic','Late Cretaceous','Paleogene'],a:2,why:'T. rex lived near the very end of the Late Cretaceous, before the non-avian dinosaur extinction.'},
+    {q:'How many functional fingers did T. rex have on each forelimb?',opts:['One','Two','Three','Four'],a:1,why:'T. rex had famously small forelimbs with two functional fingers.'},
+    {q:'FINAL IDENTITY CHECK: Which species does this fossil record belong to?',opts:['Spinosaurus','Allosaurus','Tyrannosaurus rex','Giganotosaurus'],a:2,why:'The skull, massive hindlimbs and two-fingered arms identify Tyrannosaurus rex.'}
+  ]
+},
+{
+  title:'SPECIMEN 02',name:'GIGANOTOSAURUS',fossil:'assets/fossil2.webp',reveal:'assets/reveal2.webp',fact:'Giganotosaurus research cleared.',
+  questions:[
+    {q:'In Jurassic World Dominion, the Giganotosaurus is encountered inside which sanctuary?',opts:['Isla Sorna','Biosyn Valley','Isla Nublar','Lockwood Estate'],a:1,why:'The major dinosaur encounters in Dominion take place inside Biosyn Valley.'},
+    {q:'In the Dominion prologue, which dinosaur does the Giganotosaurus defeat?',opts:['Spinosaurus','Tyrannosaurus rex','Allosaurus','Carnotaurus'],a:1,why:'The prehistoric prologue shows a Giganotosaurus defeating a T. rex.'},
+    {q:'How is the Giganotosaurus finally defeated in Dominion?',opts:['Blue attacks its throat','A Mosasaurus drags it underwater','The T. rex pushes it onto Therizinosaurus claws','It falls from a cliff'],a:2,why:'In the final battle, the T. rex drives the Giganotosaurus onto the Therizinosaurus’s enormous claws.'},
+    {q:'Giganotosaurus fossils were first discovered in which modern country?',opts:['Argentina','United States','Mongolia','Morocco'],a:0,why:'Giganotosaurus is known from Patagonia in Argentina.'},
+    {q:'FINAL IDENTITY CHECK: Which species does this fossil record belong to?',opts:['Carcharodontosaurus','Giganotosaurus','Tyrannosaurus rex','Spinosaurus'],a:1,why:'The specimen is Giganotosaurus, the giant theropod featured as Dominion’s major dinosaur antagonist.'}
+  ]
+},
+{
+  title:'SPECIMEN 03',name:'THERIZINOSAURUS',fossil:'assets/fossil3.webp',reveal:'assets/reveal3.webp',fact:'Therizinosaurus research cleared.',
+  questions:[
+    {q:'In Jurassic World Dominion, who encounters a Therizinosaurus alone in the forest?',opts:['Ellie Sattler','Maisie Lockwood','Claire Dearing','Kayla Watts'],a:2,why:'Claire Dearing encounters the Therizinosaurus during her isolated forest sequence.'},
+    {q:'How does Claire avoid the Therizinosaurus during that encounter?',opts:['She climbs a tree','She hides underwater','She enters a vehicle','She uses a flare'],a:1,why:'Claire slips beneath the water while the Therizinosaurus searches nearby.'},
+    {q:'Which anatomical feature makes Therizinosaurus instantly recognizable?',opts:['A huge sail','Three horns','Extremely long hand claws','A clubbed tail'],a:2,why:'Therizinosaurus is famous for its exceptionally long claws on the forelimbs.'},
+    {q:'In Dominion’s final dinosaur battle, Therizinosaurus helps defeat which predator?',opts:['Indominus rex','Spinosaurus','Giganotosaurus','Carnotaurus'],a:2,why:'Its claws deliver the decisive impalement after the T. rex pushes the Giganotosaurus toward it.'},
+    {q:'FINAL IDENTITY CHECK: Which species does this fossil record belong to?',opts:['Deinocheirus','Therizinosaurus','Gallimimus','Velociraptor'],a:1,why:'The giant scythe-like claws identify Therizinosaurus.'}
+  ]
+},
+{
+  title:'SPECIMEN 04',name:'VELOCIRAPTOR',fossil:'assets/fossil4.webp',reveal:'assets/reveal4.webp',fact:'Velociraptor research cleared.',
+  questions:[
+    {q:'Who trains the Velociraptor pack in Jurassic World?',opts:['Alan Grant','Owen Grady','Henry Wu','Barry Sembène'],a:1,why:'Owen Grady trains and studies the park’s Velociraptor pack.'},
+    {q:'Which set correctly names Blue’s three packmates in Jurassic World?',opts:['Charlie, Delta and Echo','Rexy, Delta and Echo','Beta, Charlie and Echo','Delta, Ghost and Tiger'],a:0,why:'The four-member pack is Blue, Charlie, Delta and Echo.'},
+    {q:'In Jurassic Park (1993), where do the raptors famously stalk Lex and Tim?',opts:['The control room','The visitor-center kitchen','The T. rex paddock','The helicopter pad'],a:1,why:'One of the film’s most famous suspense scenes takes place in the visitor-center kitchen.'},
+    {q:'Real Velociraptor fossils are strongly associated with which region?',opts:['Mongolia','Argentina','Canada','Madagascar'],a:0,why:'Velociraptor fossils are known from Late Cretaceous deposits in Mongolia and nearby Central Asia.'},
+    {q:'FINAL IDENTITY CHECK: Which species does this fossil record belong to?',opts:['Dilophosaurus','Velociraptor','Compsognathus','Pyroraptor'],a:1,why:'The lightweight predatory build and franchise context identify Velociraptor.'}
+  ]
+}
+];
+const STORAGE='shafiraParkV6';
+const OLD_STORAGE='shafiraParkV3';
+const fresh={name:'',registered:false,started:false,done:[],unlocked:0,master:false,coinsEarned:[],redeemedCoins:[],mainRedeemed:false,bestScores:{},attempts:{}};
+let loaded={};
+try{loaded=JSON.parse(localStorage.getItem(STORAGE)||'null')||JSON.parse(localStorage.getItem(OLD_STORAGE)||'{}')}catch(e){loaded={}}
+let state=Object.assign({},fresh,loaded);
+state.done=Array.isArray(state.done)?state.done:[];
+state.coinsEarned=Array.isArray(state.coinsEarned)?state.coinsEarned:[...state.done];
+state.redeemedCoins=Array.isArray(state.redeemedCoins)?state.redeemedCoins:[];
+state.bestScores=(state.bestScores&&typeof state.bestScores==='object')?state.bestScores:{};
+state.attempts=(state.attempts&&typeof state.attempts==='object')?state.attempts:{};
+state.unlocked=Math.max(Number(state.unlocked)||0,state.done.length?Math.min(3,Math.max(...state.done)+1):0);
+if(state.done.length===4)state.master=true;
+let current=0;let currentScreen='welcome';let navHistory=[];
+let run={qIndex:0,score:0,answers:[],selected:null,submitted:false};
+function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
+function screenOnly(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');currentScreen=id;window.scrollTo(0,0);document.getElementById('backBtn').classList.toggle('show',navHistory.length>1);if(id==='map')renderMap();if(id==='pass'||id==='final'||id==='treasure')renderIdentity();if(id==='wallet')renderWallet();if(id==='final')renderMainState()}
+function go(id,push=true){if(push){if(navHistory[navHistory.length-1]!==id)navHistory.push(id)}else{if(!navHistory.length)navHistory=[id];else navHistory[navHistory.length-1]=id}screenOnly(id)}
+function goBack(){if(navHistory.length<=1)return;navHistory.pop();screenOnly(navHistory[navHistory.length-1])}
+function submitName(){const input=document.getElementById('visitorName');const name=input.value.trim();if(!name){document.getElementById('nameMsg').textContent='VISITOR NAME REQUIRED.';input.focus();return}state.name=name;state.registered=true;save();renderIdentity();go('pass')}
+function renderIdentity(){const name=state.name||'Shafira';document.getElementById('passName').textContent=name.toUpperCase();document.getElementById('finalName').textContent=name}
+function startExpedition(){state.started=true;save();go('map')}
+function earnedCount(){return state.coinsEarned.length}
+function updateTopCounters(){const spec=`SPECIMENS ${state.done.length}/4`;const redeem=`REDEEM YOUR PRIZE · 🪙 ${earnedCount()}/4`;['progress','quizProgressTop'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=spec});['redeemTop','quizCoins'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=redeem})}
+function renderMap(){updateTopCounters();document.querySelectorAll('.node[data-i]').forEach((n,i)=>{n.classList.toggle('locked',i>state.unlocked);n.classList.toggle('done',state.done.includes(i));n.classList.toggle('attempted',!!state.attempts[i]);n.classList.toggle('current',i===state.unlocked&&!state.done.includes(i));const best=state.bestScores[i];const label=state.done.includes(i)?`Specimen ${i+1} cleared${best!=null?`, best score ${best}/5`:''}`:state.attempts[i]?`Specimen ${i+1} attempted, score ${state.attempts[i].score}/5. Retake available.`:`Open Specimen ${String(i+1).padStart(2,'0')}`;n.querySelector('button').setAttribute('aria-label',label)});document.getElementById('mainNode').classList.toggle('show',state.master);document.getElementById('treasureNode').classList.toggle('show',state.master);document.getElementById('mapNote').textContent=state.master?'EXPEDITION COMPLETE: four research coins recorded. Main Specimen and the Investor’s Note are now unlocked.':'FIELD PROTOCOL: Each specimen contains 5 questions. Score at least 3/5 to earn that specimen’s Expedition Coin and unlock the next location.'}
+function openSpec(i){if(i>state.unlocked){alert('LOCKED — clear the previous specimen first.');return}current=i;if(state.done.includes(i)||state.attempts[i]){showResult(i,true);return}startQuiz(i)}
+function startQuiz(i){current=i;run={qIndex:0,score:0,answers:[],selected:null,submitted:false};document.getElementById('qTitle').textContent=`${specimens[i].title} // RESEARCH`;document.getElementById('evidence').style.backgroundImage=`url('${specimens[i].fossil}')`;updateTopCounters();renderQuestion();go('quiz')}
+function retakeCurrent(){startQuiz(current)}
+function renderQuestion(){const s=specimens[current],q=s.questions[run.qIndex];run.selected=null;run.submitted=false;document.getElementById('qCounter').textContent=`QUESTION ${run.qIndex+1}/5`;document.getElementById('liveScore').textContent=`SCORE ${run.score}`;document.getElementById('questionText').textContent=q.q;const opts=document.getElementById('options');opts.innerHTML=q.opts.map((o,j)=>`<button class="optionBtn" onclick="selectOption(${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join('');const fb=document.getElementById('feedback');fb.className='feedback';fb.innerHTML='';document.getElementById('submitChoiceBtn').style.display='inline-block';document.getElementById('submitChoiceBtn').disabled=false;document.getElementById('nextQuestionBtn').style.display='none';document.getElementById('msg').textContent=''}
+function selectOption(i){if(run.submitted)return;run.selected=i;document.querySelectorAll('.optionBtn').forEach((b,j)=>b.classList.toggle('selected',j===i))}
+function submitChoice(){if(run.submitted)return;if(run.selected==null){document.getElementById('msg').textContent='SELECT AN ANSWER FIRST.';return}const q=specimens[current].questions[run.qIndex];const ok=run.selected===q.a;if(ok)run.score++;run.answers.push({selected:run.selected,correct:q.a,ok});run.submitted=true;document.querySelectorAll('.optionBtn').forEach((b,j)=>{b.disabled=true;b.classList.remove('selected');if(j===q.a)b.classList.add('correct');if(j===run.selected&&!ok)b.classList.add('wrong')});const fb=document.getElementById('feedback');fb.className=`feedback show ${ok?'':'bad'}`;fb.innerHTML=ok?`<b>✓ CORRECT.</b><br>${q.why}`:`<b>✕ INCORRECT.</b><br>The correct answer is <b>${q.opts[q.a]}</b>.<br>${q.why}`;document.getElementById('liveScore').textContent=`SCORE ${run.score}`;document.getElementById('submitChoiceBtn').style.display='none';const next=document.getElementById('nextQuestionBtn');next.style.display='inline-block';next.textContent=run.qIndex===4?'SEE RESEARCH RESULT →':'NEXT QUESTION →'}
+function nextQuestion(){if(!run.submitted)return;if(run.qIndex<4){run.qIndex++;renderQuestion()}else finishQuiz()}
+function finishQuiz(){const passed=run.score>=3;const previousBest=Number(state.bestScores[current]??-1);state.bestScores[current]=Math.max(previousBest,run.score);state.attempts[current]={score:run.score,answers:run.answers,passed};let newlyMinted=false;if(passed){if(!state.done.includes(current)){state.done.push(current);state.done.sort((a,b)=>a-b);newlyMinted=true}if(!state.coinsEarned.includes(current)){state.coinsEarned.push(current);state.coinsEarned.sort((a,b)=>a-b)}state.unlocked=Math.max(state.unlocked,Math.min(3,current+1));if(state.done.length===4)state.master=true}save();showResult(current,false,newlyMinted)}
+function showResult(i,revisit=false,newlyMinted=false){current=i;const s=specimens[i];const attempt=state.attempts[i]||{score:state.bestScores[i]??5,answers:[],passed:state.done.includes(i)};const passed=state.done.includes(i);document.getElementById('correctImg').style.backgroundImage=`url('${passed?s.reveal:s.fossil}')`;document.getElementById('correctName').textContent=s.name;const label=document.getElementById('resultLabel');label.textContent=passed?'SPECIMEN CLEARED':'RESEARCH INCOMPLETE';label.className=passed?'ok':'ok fail';document.getElementById('resultScore').textContent=`${attempt.score}/5`;document.getElementById('resultHeadline').textContent=passed?(newlyMinted?'EXPEDITION COIN EARNED':'CLEARANCE RECORDED'):'COIN NOT EARNED';document.getElementById('resultSub').textContent=passed?'Minimum score achieved. This specimen can now be revisited anytime.':'You need at least 3 correct answers. Retake the test to earn this specimen coin.';const rows=(attempt.answers||[]).map((a,idx)=>{const q=s.questions[idx];return `<div class="resultRow ${a.ok?'good':'bad'}"><span class="mark">${a.ok?'✓':'✕'}</span><span>Q${idx+1}: ${a.ok?'Correct':`Correct answer: ${q.opts[q.a]}`}</span></div>`}).join('');document.getElementById('resultBreakdown').innerHTML=rows||`<div class="resultRow good"><span class="mark">✓</span><span>Specimen cleared. Best score: ${state.bestScores[i]??attempt.score}/5.</span></div>`;const minted=document.getElementById('mintedBox');minted.style.display=passed?'flex':'none';document.getElementById('mintCoin').textContent=String(i+1).padStart(2,'0');document.getElementById('mintTitle').textContent=`SPECIMEN ${String(i+1).padStart(2,'0')} COIN ${newlyMinted?'MINTED':'RECORDED'}`;document.getElementById('walletResultBtn').style.display=passed?'inline-block':'none';document.getElementById('retakeBtn').textContent=passed?'RETAKE RESEARCH':'RETAKE TEST';const cont=document.getElementById('continueAfterCorrect');cont.textContent=passed?(i===3&&state.master?'UNLOCK FINAL REWARDS →':'RETURN TO MAP →'):'RETURN TO MAP →';go('correct')}
+function continueAfterCorrect(){if(state.done.includes(current)&&current===3&&state.master)go('rewards');else go('map')}
+function renderWallet(){updateTopCounters();const grid=document.getElementById('walletGrid');grid.innerHTML=specimens.map((s,i)=>{const earned=state.coinsEarned.includes(i),redeemed=state.redeemedCoins.includes(i),best=state.bestScores[i];return `<article class="coin-card ${earned?'':'locked'}"><div class="coin-big">SP<br>${String(i+1).padStart(2,'0')}</div><div><h3>${s.title} COIN</h3><p>${earned?`${s.name} research cleared${best!=null?` with best score ${best}/5`:''}. This coin is permanently recorded as your claim token for Specimen ${String(i+1).padStart(2,'0')}.`:state.attempts[i]?`Current score: ${state.attempts[i].score}/5. Score at least 3/5 to unlock this coin.`:'LOCKED — complete this specimen research to earn its coin.'}</p><div class="status ${redeemed?'redeemed':''}">${!earned?'NOT EARNED':redeemed?'REDEEMED WITH THE INVESTOR':'AVAILABLE TO REDEEM'}</div>${earned&&!redeemed?`<button class="btn gold" style="margin-top:10px;padding:10px 14px" onclick="redeemCoin(${i})">REDEEM SPECIMEN ${String(i+1).padStart(2,'0')}</button>`:''}${earned&&redeemed?`<button class="btn ghost" style="margin-top:10px;padding:10px 14px" onclick="alert('Coin ${String(i+1).padStart(2,'0')} remains permanently recorded in your Expedition Ledger.')">VIEW RECORD</button>`:''}${!earned&&i<=state.unlocked?`<button class="btn secondary" style="margin-top:10px;padding:10px 14px" onclick="startQuiz(${i})">${state.attempts[i]?'RETAKE TEST':'BEGIN RESEARCH'}</button>`:''}</div></article>`}).join('')}
+function redeemCoin(i){if(!state.coinsEarned.includes(i))return;if(confirm(`Redeem Specimen ${String(i+1).padStart(2,'0')} with The Investor?
+
+The coin will stay recorded as REDEEMED.`)){if(!state.redeemedCoins.includes(i))state.redeemedCoins.push(i);save();renderWallet();alert(`REDEMPTION LOGGED.
+Show Coin ${String(i+1).padStart(2,'0')} to The Investor to claim Specimen ${String(i+1).padStart(2,'0')}.`)}}
+function redeemMain(){state.mainRedeemed=true;save();renderMainState()}
+function renderMainState(){const copy=document.getElementById('finalCopy'),btn=document.getElementById('mainRedeemBtn');if(state.mainRedeemed){copy.hidden=false;btn.textContent='REDEMPTION LOGGED ✓';btn.disabled=true;btn.style.opacity=.65}else{copy.hidden=true;btn.textContent='REDEEM FROM THE INVESTOR →';btn.disabled=false;btn.style.opacity=1}}
+function resetGame(){if(confirm('Reset all expedition progress?')){localStorage.removeItem(STORAGE);localStorage.removeItem(OLD_STORAGE);location.reload()}}
+(function boot(){if(state.name)document.getElementById('visitorName').value=state.name;renderIdentity();let path=['welcome'];let start='welcome';if(state.started){path=['welcome','investor','register','pass','map'];start='map'}else if(state.registered){path=['welcome','investor','register','pass'];start='pass'}navHistory=path;screenOnly(start);renderMap();save()})();
+
+// Theme soundtrack: browsers require a user gesture before audible autoplay.
+// If assets/theme.mp3 is present, the first click/tap/key press starts it and it loops endlessly.
+(function setupThemeAudio(){
+  const audio=document.getElementById('themeAudio');
+  if(!audio)return;
+  audio.volume=.55;
+  const startMusic=()=>{audio.play().catch(()=>{});};
+  window.addEventListener('pointerdown',startMusic,{once:true});
+  window.addEventListener('keydown',startMusic,{once:true});
+  window.addEventListener('touchstart',startMusic,{once:true,passive:true});
+})();
+
+</script>
+</body>
+</html>
